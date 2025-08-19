@@ -1,8 +1,6 @@
 --Questions : --
 
 --1. Tampilkan first_name dan last_name dari aktor yang memiliki first_name "Jennifer", "Nick", atau "Ed"!
-select * from actor a  ;
-
 select first_name, last_name
 from actor a 
 where first_name in ('Jennifer', 'Nick', 'Ed');
