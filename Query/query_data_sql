@@ -1,1 +1,47 @@
+--Questions : --
 
+--1. Tampilkan first_name dan last_name dari aktor yang memiliki first_name "Jennifer", "Nick", atau "Ed"!
+select * from actor a  ;
+
+select first_name, last_name
+from actor a 
+where first_name in ('Jennifer', 'Nick', 'Ed');
+
+--2. Hitunglah total pembayaran (amount) untuk setiap payment_id yang lebih besar dari 5.99!
+select payment_id, 
+sum(amount) as total_pembayaran
+from payment
+group by payment_id
+having sum(amount) > 5.99 order by sum(amount) asc;
+
+--3. Kelompokkan film berdasarkan durasi menjadi 4 kategori!
+select film_id, title, length,
+case 
+	when length > 0 and length <= 72 then 'singkat'
+	when length > 72 and length <= 86 then 'sedang'
+	when length > 87 and length <= 100 then 'lama'
+	when length > 100 then 'sangat lama'
+end as duration
+from film
+order by title;
+
+--4. Gabungkan data dari tabel rental dan payment untuk menampilkan rental_id, rental_date, payment_id, dan amount, urutkan berdasarkan amount secara ascending!
+select 
+	rental.rental_id,
+	rental.rental_date,
+	payment.payment_id,
+	payment.amount
+from payment 
+join rental
+	on rental.rental_id = payment.rental_id
+order by payment.amount asc;
+
+--5. Gunakan UNION untuk menggabungkan alamat (address) yang memiliki city_id = 42 dengan city_id = 300.
+select address, city_id
+from address
+where city_id = 42
+union
+select address, city_id
+from address 
+where city_id = 300
+order by address;
