@@ -1,4 +1,4 @@
-# DvD Rental
+# 📌 DvD Rental
 
 ## Project Overview : SQL Database & Query Practice
 
